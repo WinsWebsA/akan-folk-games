@@ -1,0 +1,183 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ *
+ *  Ghana African Games — LIGHT theme design tokens (Tailwind v4)
+ * ------------------------------------------------------------------ */
+@theme {
+  /* Warm light surfaces */
+  --color-bg: #f7f1e1;
+  --color-surface: #fffdf7;
+  --color-surface-2: #f1e8d3;
+
+  /* Ink — primary text (deep warm bark) */
+  --color-ink: #241a0f;
+
+  /* Gold */
+  --color-gold: #e8b923;
+  --color-gold-soft: #f2cf5c;
+  --color-gold-deep: #b3860f;
+
+  /* Vibrant greens */
+  --color-forest: #1e824c;
+  --color-forest-deep: #0b5d3b;
+
+  /* Warm accents */
+  --color-terracotta: #c4551d;
+  --color-clay: #b8551b;
+  --color-crimson: #a8332a;
+  --color-cocoa: #7b3f00;
+
+  /* Light / cream */
+  --color-cream: #fbf6ea;
+  --color-sand: #e6d5b0;
+  --color-parchment: #faf5e9;
+
+  --font-display: var(--font-display), ui-serif, Georgia, serif;
+  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-shimmer: shimmer 3.5s linear infinite;
+  --animate-fade-in: fade-in 0.8s ease forwards;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ *  Base
+ * ------------------------------------------------------------------ */
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-gold);
+  color: var(--color-ink);
+}
+
+/* Themed scrollbar */
+::-webkit-scrollbar {
+  width: 11px;
+  height: 11px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-surface-2);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--color-gold-deep), var(--color-cocoa));
+  border-radius: 9999px;
+  border: 2px solid var(--color-surface-2);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold-deep);
+}
+
+/* ------------------------------------------------------------------ *
+ *  Utilities
+ * ------------------------------------------------------------------ */
+
+/* Woven "kente" stripes — used as a fallback game-card texture */
+.bg-kente {
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(232, 185, 35, 0.28) 0px,
+    rgba(232, 185, 35, 0.28) 10px,
+    rgba(30, 130, 76, 0.28) 10px,
+    rgba(30, 130, 76, 0.28) 20px,
+    rgba(196, 85, 29, 0.28) 20px,
+    rgba(196, 85, 29, 0.28) 30px,
+    rgba(168, 51, 42, 0.28) 30px,
+    rgba(168, 51, 42, 0.28) 40px
+  );
+}
+
+/* Faint adinkra-like dot grid */
+.bg-dots {
+  background-image: radial-gradient(rgba(36, 26, 15, 0.14) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+.text-gradient-gold {
+  background: linear-gradient(
+    100deg,
+    var(--color-gold-deep),
+    var(--color-terracotta),
+    var(--color-cocoa),
+    var(--color-gold-deep)
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: var(--animate-shimmer);
+}
+
+.ring-glow {
+  box-shadow:
+    0 0 0 1px rgba(36, 26, 15, 0.06),
+    0 24px 60px -24px rgba(123, 63, 0, 0.35);
+}
+
+/* Thin gold divider with fade */
+.rule-gold {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(179, 134, 15, 0.55),
+    transparent
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
