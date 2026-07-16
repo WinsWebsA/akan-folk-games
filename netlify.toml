@@ -1,0 +1,9 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+# Translates the Next.js build output into Netlify routes. Without this, `.next`
+# is served as a plain folder — and since it has no index.html at its root,
+# every path returns Netlify's "Page not found".
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
